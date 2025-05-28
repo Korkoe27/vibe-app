@@ -30,7 +30,14 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganizationRequest $request)
     {
-        //
+        $validatedOrganization = $request->validated();
+
+        $organization = Organization::create($validatedOrganization);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Organization created successfully',
+            'organization' => $organization
+        ], 201);
     }
 
     /**
